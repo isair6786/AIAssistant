@@ -9,3 +9,5 @@ google-auth-oauthlib
 python-dateutil
 fastapi
 uvicorn
+python-dotenv
+

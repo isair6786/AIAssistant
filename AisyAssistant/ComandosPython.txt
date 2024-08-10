@@ -1,0 +1,4 @@
+python -m venv env-App  --Para crear entorno 
+env-App\Scripts\activate  --para activar entorno
+pip install -r requirements.txt
+uvicorn GPTMain:app
