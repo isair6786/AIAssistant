@@ -15,6 +15,7 @@ class Chat:
         self._context=[]
         #with open(token_file) as f:
         openai.api_key = os.getenv('API_KEY')
+
             
     def obtener_contexto(self):
         return self._context
