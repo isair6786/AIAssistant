@@ -29,7 +29,7 @@ print("fin") """
 @app.post("/send-message/")
 async def send_message(request: MessageRequest):
     try:
-        print(request.message)
+        print(request.contexto)
         
         respuesta = chat_instance.realiza_peticion_fe(json.loads(request.contexto))
         return MessageResponse(responseMessage=respuesta)

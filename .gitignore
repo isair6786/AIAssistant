@@ -3,3 +3,4 @@ AisyAssistant/env-App/
 AisyAssistant/token.txt
 .vscode/settings.json
 AisyAssistant/Calendar/Secret
+.env

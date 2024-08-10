@@ -3,18 +3,18 @@ import Chat.Functions.FuncionsGPT as FuncionsGPT
 import json
 import Chat.Functions.FuncionsCode as FuncionsCode 
 import os
-
+from dotenv import load_dotenv
 
 class Chat:
     def __init__(self):
         # Obtener la ruta del directorio del script actual
         script_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-
+        load_dotenv()
         # Construir la ruta al archivo token.txt
-        token_file = os.path.join(script_dir,  "token.txt")
+        #token_file = os.path.join(script_dir,  "token.txt")
         self._context=[]
-        with open(token_file) as f:
-            openai.api_key = f.readline()
+        #with open(token_file) as f:
+        openai.api_key = os.getenv('API_KEY')
             
     def obtener_contexto(self):
         return self._context
