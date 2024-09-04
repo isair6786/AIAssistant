@@ -41,7 +41,7 @@ async def send_message(request: MessageRequest):
 async def send_message(request: MessageRequest):
     try:
         print(request.contexto)
-
+        return 'Exito'
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
