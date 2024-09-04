@@ -40,7 +40,7 @@ async def send_message(request: MessageRequest):
 @app.get("/google-auth/")
 async def send_message(request: MessageRequest):
     try:
-        print(request.contexto)
+        #print(request.contexto)
         return 'Exito'
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
