@@ -36,6 +36,14 @@ async def send_message(request: MessageRequest):
         return MessageResponse(responseMessage=respuesta)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+    
+@app.post("/google-auth/")
+async def send_message(request: MessageRequest):
+    try:
+        print(request.contexto)
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
 
 @app.get("/")
 async def send_message():
