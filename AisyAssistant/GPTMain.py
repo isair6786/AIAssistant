@@ -10,6 +10,9 @@ app = FastAPI()
 # Define el modelo de datos para la solicitud
 class MessageRequest(BaseModel):
     contexto: str 
+    uid: str
+    correoUid: str
+
 
 # Define el modelo de datos para la respuesta
 class MessageResponse(BaseModel):
@@ -29,22 +32,11 @@ print("fin") """
 @app.post("/send-message/")
 async def send_message(request: MessageRequest):
     try:
-        print(request.contexto)
-
-        
-        respuesta = chat_instance.realiza_peticion_fe(json.loads(request.contexto))
+        respuesta = chat_instance.realiza_peticion_fe(json.loads(request.contexto),request.uid,request.correoUid)
         return MessageResponse(responseMessage=respuesta)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
     
-@app.get("/google-auth/")
-async def send_message(request: MessageRequest):
-    try:
-        #print(request.contexto)
-        return 'Exito'
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
-
 @app.get("/")
 async def send_message():
     return {"responseMessage": 'HolaMundo-Estado de API: Ejecucion'}

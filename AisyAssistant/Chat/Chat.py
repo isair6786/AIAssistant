@@ -6,6 +6,7 @@ import os
 from dotenv import load_dotenv
 
 class Chat:
+    _model ="gpt-3.5-turbo-0125" #gpt-3.5-turbo-0125 gpt-4-0613
     def __init__(self):
         # Obtener la ruta del directorio del script actual
         script_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
@@ -21,7 +22,7 @@ class Chat:
         return self._context
     
     #Metodo Privado
-    def _obtener_completion(self,mensajes, model="gpt-3.5-turbo-0125"):
+    def _obtener_completion(self,mensajes, model=_model):
         respuesta = openai.chat.completions.create(
             model=model,
             messages=mensajes,
@@ -30,7 +31,7 @@ class Chat:
         )
         return respuesta.choices[0].message
     
-    def _obtener_completion_function(self,mensajes, model="gpt-3.5-turbo-0125"):
+    def _obtener_completion_function(self,mensajes, model=_model):
         respuesta = openai.chat.completions.create(
             model=model,
             messages=mensajes
@@ -46,18 +47,18 @@ class Chat:
         return respuesta
     #Esta funcion recibe el contexto de los mensajes con el ultimo 
     #mensaje del usuario para obtener la respuesta 
-    def realiza_peticion_fe(self,mensajes):
-        respuesta=self._analiza_respuesta(self._obtener_completion(mensajes))
+    def realiza_peticion_fe(self,mensajes,uid,correoUid):
+        respuesta=self._analiza_respuesta(self._obtener_completion(mensajes),uid,correoUid)
         return respuesta
     
-    def _analiza_respuesta(self,respuesta):
-        
+    def _analiza_respuesta(self,respuesta,uid,correoUid):
         message=respuesta.content
         llamadas_funciones = respuesta.tool_calls
         if llamadas_funciones:
             available_functions = {
-            "obtener_fecha": FuncionsCode._getFecha,
             "enviar_correo": FuncionsCode._sendMail,
+            "leer_agenda": FuncionsCode._readEvents,
+            "leer_correos": FuncionsCode._readEmails,
             }  
             
             for funcion in llamadas_funciones:
@@ -66,9 +67,10 @@ class Chat:
                 function_args = json.loads(funcion.function.arguments)
                 if len(function_args)>0:
                     sorted_args = [function_args[arg_name] for arg_name in sorted(function_args.keys())]
-                    function_response = function_to_call(*sorted_args)
+                    #print(sorted_args)
+                    function_response = function_to_call(*sorted_args,uid,correoUid)
                 else:
-                    function_response = function_to_call()
+                    function_response = function_to_call(uid,correoUid)
             #Concatenamos tollcalls
             self._concatenar_chat(
                 {

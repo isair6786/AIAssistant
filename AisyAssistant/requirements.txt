@@ -10,4 +10,5 @@ python-dateutil
 fastapi
 uvicorn
 python-dotenv
+requests
 

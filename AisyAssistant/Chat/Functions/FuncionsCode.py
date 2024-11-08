@@ -1,15 +1,29 @@
 from datetime import datetime
-def _getFecha():
-    # Obtener la fecha y hora actual
-    now = datetime.now()
-    # Convertir la fecha y hora en una cadena de texto con el formato deseado
-    cadena_fecha_hora = now.strftime("%Y-%m-%d %H:%M:%S")
-    return cadena_fecha_hora
+import Chat.Functions.Providers.apiFunctions as FuncionsCode
+import json
+
+def _sendMail(bcc,body,cc,emails,subject,uid,correoUid):
+
+    payload = {
+    "uid":uid,
+    "correoUid":correoUid,
+    "subject":subject, 
+    "body":body, 
+    "toRecipients":emails,
+    "toCCRecipients":cc, 
+    "toBCCRecipients":bcc
+    }
+
+    respuesta=FuncionsCode.api_enviar_correo(payload)
     
-def _sendMail(mensaje,correo):
-    respuesta=f"""
-    "correo":{correo},
-    "mensaje":{mensaje},
-    "resultado":"exitoso"
-    """ 
+    return respuesta
+def _readEvents(fecha_desde,fecha_hasta,uid,correoUid):
+
+    respuesta=FuncionsCode.api_leer_eventos(fecha_desde,fecha_hasta,uid)
+    
+    return respuesta
+def _readEmails(uid,correoUid):
+
+    respuesta=FuncionsCode.api_leer_correos(uid)
+    
     return respuesta
