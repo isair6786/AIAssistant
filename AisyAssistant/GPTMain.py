@@ -35,7 +35,8 @@ async def send_message(request: MessageRequest):
         respuesta = chat_instance.realiza_peticion_fe(json.loads(request.contexto),request.uid,request.correoUid)
         return MessageResponse(responseMessage=respuesta)
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        print(HTTPException(status_code=500, detail=str(e)))
+        return MessageResponse(responseMessage="Ocurrio un error al procesar el mensaje , intente nuevamente")
     
 @app.get("/")
 async def send_message():
