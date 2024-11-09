@@ -27,3 +27,8 @@ def _readEmails(uid,correoUid):
     respuesta=FuncionsCode.api_leer_correos(uid)
     
     return respuesta
+def _sayHiChat(uid,correoUid):
+
+    respuesta=F"Hola! Soy Shedzy! Tu asistente virtual , ¿Cómo puedo ayudarte hoy?"
+    
+    return respuesta

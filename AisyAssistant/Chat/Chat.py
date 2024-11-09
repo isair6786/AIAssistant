@@ -59,8 +59,9 @@ class Chat:
             "enviar_correo": FuncionsCode._sendMail,
             "leer_agenda": FuncionsCode._readEvents,
             "leer_correos": FuncionsCode._readEmails,
+            "saludo_inicial":FuncionsCode._sayHiChat,
             }  
-            
+            _isSayHi=False #variable para evaluar el saludo
             for funcion in llamadas_funciones:
                 function_name = funcion.function.name
                 function_to_call = available_functions[function_name]
@@ -71,24 +72,29 @@ class Chat:
                     function_response = function_to_call(*sorted_args,uid,correoUid)
                 else:
                     function_response = function_to_call(uid,correoUid)
-            #Concatenamos tollcalls
-            self._concatenar_chat(
-                {
-                    "tool_calls": llamadas_funciones,
-                    "role": "assistant",
-                }
-            ) 
-            # Enviamos la respuesta de la función a GPT
-            self._concatenar_chat(
-                {
-                    "tool_call_id": funcion.id,
-                    "role": "tool",
-                    "name": function_name,
-                    "content": function_response,
-                }
-            )  # Contenido de la funciónno
-            response_message = self._obtener_completion_function(self.obtener_contexto())
-            message=response_message.content
+                    if (function_name=="saludo_inicial"):
+                        _isSayHi=True
+                        message=function_response
+
+            if not _isSayHi :
+                #Concatenamos tollcalls
+                self._concatenar_chat(
+                    {
+                        "tool_calls": llamadas_funciones,
+                        "role": "assistant",
+                    }
+                ) 
+                # Enviamos la respuesta de la función a GPT
+                self._concatenar_chat(
+                    {
+                        "tool_call_id": funcion.id,
+                        "role": "tool",
+                        "name": function_name,
+                        "content": function_response,
+                    }
+                )  # Contenido de la funciónno
+                response_message = self._obtener_completion_function(self.obtener_contexto())
+                message=response_message.content
         #Si no hay funcion a invocar solo guardamos lo que ya respondio
         self._concatenar_chat({'role':'assistant', 'content':f"{message}"})
         return message
