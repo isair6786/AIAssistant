@@ -17,9 +17,9 @@ def _sendMail(bcc,body,cc,emails,subject,uid,correoUid):
     respuesta=FuncionsCode.api_enviar_correo(payload)
     
     return respuesta
-def _readEvents(fecha_desde,fecha_hasta,uid,correoUid):
+def _readEvents(uid,correoUid):
 
-    respuesta=FuncionsCode.api_leer_eventos(fecha_desde,fecha_hasta,uid)
+    respuesta=FuncionsCode.api_leer_eventos(uid)
     
     return respuesta
 def _readEmails(uid,correoUid):

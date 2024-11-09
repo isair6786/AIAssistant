@@ -39,21 +39,9 @@ functions = [
             "function": {
             "name": "leer_agenda",
             "description": " Lee los eventos,agenda del calendario del usuario , de las cuentas asociadas",
-            "parameters": {
-               "type": "object",
-                "properties": {
-                    
-                    "fecha_desde": {
-                        "type": "string",
-                        "description": "fecha a partir de la cual se leeran los eventos,formato YYYY-MM-DD",
-                    },
-                    "fecha_hasta": {
-                        "type": "string",
-                        "description": "fecha hasta la cual se leeran los correos,formato YYYY-MM-DD",
-                    }
-                },
-                "required": ["fecha_desde","fecha_hasta"],
-            },
+            "parameters": {       
+
+                }   ,
             }
         },
         {
