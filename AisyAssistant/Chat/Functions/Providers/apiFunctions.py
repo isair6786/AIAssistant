@@ -26,10 +26,11 @@ def api_leer_eventos(uid):
        # Obtener la fecha actual
         fecha_actual = datetime.now().date()
         print("La fecha actual es:", fecha_actual)
-        URL = os.getenv('URL_API')+"/api/getCalendarEventsbyDate" + f"?uid={uid}&date={fecha_actual}&endDate={fecha_actual}"  # Asegúrate de que la URL esté correctamente configurada
+        URL = os.getenv('URL_API')+"/api/pythonGetCalendarEventsbyDate" + f"?uid={uid}&date={fecha_actual}&endDate={fecha_actual}"  # Asegúrate de que la URL esté correctamente configurada
 
         # Realizar la solicitud get
         response = requests.get(URL)  # 'json' serializa automáticamente el dict en JSON
+        console.log(response.text)
         return(response.text)
     except requests.RequestException as e:
         print(f"Excepción al enviar la solicitud: {e}")
@@ -37,7 +38,7 @@ def api_leer_eventos(uid):
 def api_leer_correos(uid):
 
     try:
-        URL = os.getenv('URL_API')+f"/api/readEmailbyProvider?uid={uid}"
+        URL = os.getenv('URL_API')+f"/api/pythonReadEmailbyProvider?uid={uid}"
         # Realizar la solicitud get
         response = requests.get(URL)  # 'json' serializa automáticamente el dict en JSON
         return(response.text)
