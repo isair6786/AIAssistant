@@ -59,7 +59,7 @@ class Chat:
             "enviar_correo": FuncionsCode._sendMail,
             "leer_agenda": FuncionsCode._readEvents,
             "leer_correos": FuncionsCode._readEmails,
-            "saludo_inicial":FuncionsCode._sayHiChat,
+            #"saludo_inicial":FuncionsCode._sayHiChat,
             }  
             _isSayHi=False #variable para evaluar el saludo
             for funcion in llamadas_funciones:
@@ -72,9 +72,9 @@ class Chat:
                     function_response = function_to_call(*sorted_args,uid,correoUid)
                 else:
                     function_response = function_to_call(uid,correoUid)
-                    if (function_name=="saludo_inicial"):
-                        _isSayHi=True
-                        message=function_response
+                    # if (function_name=="saludo_inicial"):
+                    #     _isSayHi=True
+                    #     message=function_response
 
             if not _isSayHi :
                 #Concatenamos tollcalls

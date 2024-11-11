@@ -52,16 +52,16 @@ functions = [
             "parameters": {            
             },
             }
-        },
-         {
-            "type": "function",
-            "function": {
-            "name": "saludo_inicial",
-            "description": "Responde al saludo inicial del usuario",
-            "parameters": {            
-            },
-            }
-        }
+         }
+        #  {
+        #     "type": "function",
+        #     "function": {
+        #     "name": "saludo_inicial",
+        #     "description": "Responde al saludo inicial del usuario",
+        #     "parameters": {            
+        #     },
+        #     }
+        # }
        
     ]
 
