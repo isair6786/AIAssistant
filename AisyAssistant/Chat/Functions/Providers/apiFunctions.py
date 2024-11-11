@@ -30,7 +30,7 @@ def api_leer_eventos(uid):
 
         # Realizar la solicitud get
         response = requests.get(URL)  # 'json' serializa automáticamente el dict en JSON
-        console.log(response.text)
+       
         return(response.text)
     except requests.RequestException as e:
         print(f"Excepción al enviar la solicitud: {e}")
