@@ -6,7 +6,7 @@ import os
 from dotenv import load_dotenv
 
 class Chat:
-    _model ="gpt-3.5-turbo-0125" #gpt-3.5-turbo-0125 gpt-4-0613
+    _model ="gpt-4o-mini" #"gpt-3.5-turbo-0125" #gpt-3.5-turbo-0125 gpt-4-0613
     def __init__(self):
         # Obtener la ruta del directorio del script actual
         script_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
