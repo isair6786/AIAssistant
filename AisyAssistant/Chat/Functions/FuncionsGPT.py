@@ -52,7 +52,7 @@ functions = [
             "parameters": {            
             },
             }
-         }
+         },
         #  {
         #     "type": "function",
         #     "function": {
@@ -67,7 +67,7 @@ functions = [
             "function": {
             "name": "agendar_evento",
             "description": "Una vez el usuario confirma los datos ,Crea/Agenda un evento en el calendario del usuario ",
-            "parameters": "parameters": {
+            "parameters": {
                "type": "object",
                 "properties": {
                     
