@@ -3,7 +3,7 @@ functions = [
             "type": "function",
             "function": {
             "name": "enviar_correo",
-            "description": "Cuando el usuario confirme,se envia el correo a destinatarios, los correos deben ser separados por coma ",
+            "description": "Cuando el usuario confirme,se envia el correo a destinatarios, los correos deben ser separados por coma,como IA, el cuerpo debes formatearlo siempre en HTML ",
             "parameters": {
                "type": "object",
                 "properties": {
@@ -14,7 +14,7 @@ functions = [
                     },
                     "body": {
                         "type": "string",
-                        "description": "Is the body of email to send",
+                        "description": "Is the body of email to send , must be in HTML FORMAT",
                     },
                      "subject": {
                         "type": "string",
@@ -38,7 +38,7 @@ functions = [
             "type": "function",
             "function": {
             "name": "leer_agenda",
-            "description": " Lee los eventos,agenda del calendario del usuario , de las cuentas asociadas",
+            "description": " Lee los eventos/agenda del calendario del usuario , de las cuentas asociadas, con este dato como IA puedes brindar recomendaciones al usuario",
             "parameters": {       
 
                 }   ,
@@ -62,7 +62,45 @@ functions = [
         #     },
         #     }
         # }
-       
+       {
+            "type": "function",
+            "function": {
+            "name": "agendar_evento",
+            "description": "Una vez el usuario confirma los datos ,Crea/Agenda un evento en el calendario del usuario ",
+            "parameters": "parameters": {
+               "type": "object",
+                "properties": {
+                    
+                    "titulo": {
+                        "type": "string",
+                        "description": "Es el titulo del evento",
+                    },
+                    "descripcion_evento": {
+                        "type": "string",
+                        "description": "Es la descripcion del evento ",
+                    },
+                     "start": {
+                        "type": "string",
+                        "description": "el usuario brinda la Fecha de inicio  de la reunion (se formateará como este ejemplo 2024-11-26T20:00:00.000Z) ",
+                    },
+                     "end": {
+                        "type": "string",
+                        "description": "el usuario brinda la Fecha de finalizacion  de la reunion (se formateará como este ejemplo 2024-11-26T20:00:00.000Z ) ",
+                    },
+                    "isAllDay": {
+                        "type": "boolean",
+                        "description": "El usuario confirma si la reunion durará todo el dia o no",
+                    },
+                    "attendees": {
+                        "type": "string",
+                        "description": "correos de las personas invitadas separadas por coma",
+                    }     
+                    
+                },
+                "required": ["titulo","descripcion_evento","start","end","isAllDay","attendees"],
+            }
+            }
+        }
     ]
 
 

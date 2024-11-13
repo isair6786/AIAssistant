@@ -13,22 +13,16 @@ def _sendMail(bcc,body,cc,emails,subject,uid,correoUid):
     "toCCRecipients":cc, 
     "toBCCRecipients":bcc
     }
-
     respuesta=FuncionsCode.api_enviar_correo(payload)
-    
     return respuesta
-def _readEvents(uid,correoUid):
 
+def _readEvents(uid,correoUid):
     respuesta=FuncionsCode.api_leer_eventos(uid)
-    
     return respuesta
 def _readEmails(uid,correoUid):
-
     respuesta=FuncionsCode.api_leer_correos(uid)
-    
     return respuesta
-def _sayHiChat(uid,correoUid):
 
+def _sheduleEvent(attendees,descripcion_evento,end,isAllDay,start,titulo,uid,correoUid):
     respuesta=F"Hola! Soy Shedzy! Tu asistente virtual , ¿Cómo puedo ayudarte hoy?"
-    
     return respuesta

@@ -59,7 +59,7 @@ class Chat:
             "enviar_correo": FuncionsCode._sendMail,
             "leer_agenda": FuncionsCode._readEvents,
             "leer_correos": FuncionsCode._readEmails,
-            #"saludo_inicial":FuncionsCode._sayHiChat,
+            "agendar_evento":FuncionsCode._sheduleEvent,
             }  
             _isSayHi=False #variable para evaluar el saludo
             for funcion in llamadas_funciones:

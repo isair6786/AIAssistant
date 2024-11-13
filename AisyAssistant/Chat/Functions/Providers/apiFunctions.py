@@ -45,3 +45,23 @@ def api_leer_correos(uid):
     except requests.RequestException as e:
         print(f"Excepción al enviar la solicitud: {e}")
         return False
+
+def api_agendar_evento(attendees, descripcion_evento, end, isAllDay, start, titulo, uid, correoUid):
+    try:
+        URL = os.getenv('URL_API') + "/api/pythonSheduleEvent"
+        payload = {
+            "uid":uid,
+            "correoUid":correoUid,
+            "titulo":titulo,
+            "descripcion_evento":descripcion_evento,
+            "start":start,
+            "end":end,
+            "isAllDay":isAllDay,
+            "attendees":attendees
+        }
+        # Realizar la solicitud POST con los datos del evento
+        response = requests.post(URL, json=payload)  # 'json' serializa automáticamente el dict en JSON
+        return response.text
+    except requests.RequestException as e:
+        print(f"Excepción al enviar la solicitud: {e}")
+        return False
