@@ -1,8 +1,7 @@
 import requests
 import os
 from dotenv import load_dotenv
-from datetime import datetime
-
+from datetime import datetime, timedelta
 
 
 def api_enviar_correo(payload):
@@ -24,13 +23,16 @@ def api_leer_eventos(uid):
     try:
         # Obtener la fecha actual
         fecha_actual = datetime.now().date()
+        fecha_futura = fecha_actual + timedelta(weeks=1)
         print("La fecha actual es:", fecha_actual)
-        URL = os.getenv('URL_API') + "/api/pythonGetCalendarEventsbyDate" + f"?uid={uid}&date={fecha_actual}&endDate={fecha_actual}"  # Asegúrate de que la URL esté correctamente configurada
+        print("La fecha fin es:", fecha_futura)
+        URL = os.getenv('URL_API') + "/api/pythonGetCalendarEventsbyDate" + f"?uid={uid}&date={fecha_actual}&endDate={fecha_futura}"  # Asegúrate de que la URL esté correctamente configurada
 
         # Realizar la solicitud get con un timeout de 180 segundos (3 minutos)
         response = requests.get(URL, timeout=(30,90))  # Agregamos el timeout
-
         # Devuelve el contenido de la respuesta si es exitosa
+        if response.text=="[]":
+           return "agenda esta vacia"
         return response.text
     except requests.Timeout:
         print("Error al consultar los correos, el servicio no esta disponible por el momento , intente nuevamente ")

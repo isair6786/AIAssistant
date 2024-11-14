@@ -38,7 +38,7 @@ functions = [
             "type": "function",
             "function": {
             "name": "leer_agenda",
-            "description": " Lee los eventos/agenda del calendario del usuario , de las cuentas asociadas, con este dato como IA puedes brindar recomendaciones al usuario",
+            "description": " Lee los eventos/agenda del calendario del usuario, el usuario debe indicar explicitamente palabras como ' Lee mi agenda , quiero ver mis eventos, mira mis horarios,etc'",
             "parameters": {       
 
                 }   ,
