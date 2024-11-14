@@ -67,8 +67,10 @@ def api_agendar_evento(attendees, descripcion_evento, end, isAllDay, start, titu
             "isAllDay":isAllDay,
             "attendees":attendees
         }
+        print(payload)
         # Realizar la solicitud POST con los datos del evento
         response = requests.post(URL, json=payload)  # 'json' serializa automáticamente el dict en JSON
+        print(response.text)
         return response.text
     except requests.RequestException as e:
         print(f"Excepción al enviar la solicitud: {e}")
