@@ -22,7 +22,7 @@ def api_enviar_correo(payload):
 def api_leer_eventos(uid):
     try:
         # Obtener la fecha actual
-        fecha_actual = datetime.now().date()
+        fecha_actual = datetime.now().date() - timedelta(days=3)
         fecha_futura = fecha_actual + timedelta(weeks=1)
         print("La fecha actual es:", fecha_actual)
         print("La fecha fin es:", fecha_futura)
