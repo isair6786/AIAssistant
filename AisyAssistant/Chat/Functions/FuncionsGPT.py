@@ -66,7 +66,7 @@ functions = [
             "type": "function",
             "function": {
             "name": "agendar_evento",
-            "description": "Una vez el usuario confirma los datos ,Crea/Agenda un evento en el calendario del usuario ",
+            "description": "Crea/Agenda un evento en el calendario del usuario,obligatorio que el usuario verifique los datos y confirme antes de agendar ",
             "parameters": {
                "type": "object",
                 "properties": {

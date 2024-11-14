@@ -24,5 +24,5 @@ def _readEmails(uid,correoUid):
     return respuesta
 
 def _sheduleEvent(attendees,descripcion_evento,end,isAllDay,start,titulo,uid,correoUid):
-    respuesta=F"Hola! Soy Shedzy! Tu asistente virtual , ¿Cómo puedo ayudarte hoy?"
+    respuesta=FuncionsCode.api_agendar_evento(attendees,descripcion_evento,end,isAllDay,start,titulo,uid,correoUid)
     return respuesta
