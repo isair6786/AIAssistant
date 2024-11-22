@@ -105,7 +105,7 @@ functions = [
             "type": "function",
             "function": {
             "name": "analiza_agenda",
-            "description": "Analiza la agenda del usuario y valida los horarios disponibles segun ya fea una fecha en especifico o un rango de fechas",
+            "description": "Analiza la agenda del usuario y valida los horarios disponibles segun ya fea una fecha en especifico o un rango de fechas,importante que el usuario proporcione las fechas antes de ejecutar la funcion",
             "parameters": {
                "type": "object",
                 "properties": {
