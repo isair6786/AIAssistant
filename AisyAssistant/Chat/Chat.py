@@ -69,7 +69,7 @@ class Chat:
         if llamadas_funciones:
             available_functions = {
             "enviar_correo": FuncionsCode._sendMail,
-            "leer_agenda": FuncionsCode._readEvents,
+            #"leer_agenda": FuncionsCode._readEvents,
             "leer_correos": FuncionsCode._readEmails,
             "agendar_evento":FuncionsCode._sheduleEvent,
             "analiza_agenda":FuncionsCode._viewShedule,

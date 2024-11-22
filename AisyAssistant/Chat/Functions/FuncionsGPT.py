@@ -34,16 +34,16 @@ functions = [
             },
             }
         },
-        {
-            "type": "function",
-            "function": {
-            "name": "leer_agenda",
-            "description": " Lee los eventos/agenda del calendario del usuario, el usuario debe indicar explicitamente palabras como ' Lee mi agenda , quiero ver mis eventos, mira mis horarios,etc'",
-            "parameters": {       
+        # {
+        #     "type": "function",
+        #     "function": {
+        #     "name": "leer_agenda",
+        #     "description": " Lee los eventos/agenda del calendario del usuario, el usuario debe indicar explicitamente palabras como ' Lee mi agenda , quiero ver mis eventos, mira mis horarios,etc'",
+        #     "parameters": {       
 
-                }   ,
-            }
-        },
+        #         }   ,
+        #     }
+        # },
         {
             "type": "function",
             "function": {
