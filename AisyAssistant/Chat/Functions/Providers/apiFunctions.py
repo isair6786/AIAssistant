@@ -63,6 +63,7 @@ def api_validar_horarios(end,esRangodeFechas,start,uid,correoUid):
         URL = os.getenv('URL_API')+f"/api/getInfoShedule?uid={uid}&date={start}&endDate={end}&esRango={esRango}"
         # Realizar la solicitud get
         response = requests.get(URL,timeout=(60,120))  # 'json' serializa automáticamente el dict en JSON
+        
         return(response.text)
     except requests.Timeout:
         print("Error al consultar agenda, el servicio no esta disponible por el momento , intente nuevamente ")

@@ -40,7 +40,7 @@ async def send_message(request: MessageRequest):
         print(HTTPException(status_code=500, detail=str(e)))
         return MessageResponse(responseMessage="Ocurrio un error al procesar el mensaje , intente nuevamente")
 @app.post("/getShedule/")
-async def send_message(request: SheduleRequest):
+async def get_shedule(request: SheduleRequest):
     try:
         respuesta = chat_instance.realiza_peticion(request.contexto)
 
