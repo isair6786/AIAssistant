@@ -2,8 +2,11 @@ import requests
 import os
 from dotenv import load_dotenv
 from datetime import datetime, timedelta
-
-
+from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel
+import json
+from Chat.Functions.Providers.functionsExtra  import Chat
+gpt = Chat()
 def api_enviar_correo(payload):
 
     try:
@@ -55,16 +58,22 @@ def api_leer_correos(uid):
         return f"Error al realizar la solicitud: {e}"
 
 def api_validar_horarios(end,esRangodeFechas,start,uid,correoUid):
-    #print(end,esRangodeFechas,start,uid,correoUid)
+    print(end,esRangodeFechas,start,uid,correoUid)
+
     esRango=0
     if esRangodeFechas:
         esRango=1
+    else:
+       end = datetime.strptime(end, "%Y-%m-%d").date() + timedelta(days=1)
     try:
-        URL = os.getenv('URL_API')+f"/api/getInfoShedule?uid={uid}&date={start}&endDate={end}&esRango={esRango}"
+        URL = os.getenv('URL_API')+f"/api/getOnlyInfoShedule?uid={uid}&date={start}&endDate={end}&esRango={esRango}"
         # Realizar la solicitud get
-        response = requests.get(URL,timeout=(60,120))  # 'json' serializa automáticamente el dict en JSON
-        
-        return(response.text)
+        info = requests.get(URL,timeout=(60,120))  # 'json' serializa automáticamente el dict en JSON
+        data = json.loads(info.text)
+        response_calendar = data.get("response", None)  # Devuelve None si "response" no está presente
+
+        response=gpt.realiza_peticion_interna(response_calendar)
+        return(response)
     except requests.Timeout:
         print("Error al consultar agenda, el servicio no esta disponible por el momento , intente nuevamente ")
         return "Error al consultar agenda, el servicio no esta disponible por el momento , intente nuevamente "

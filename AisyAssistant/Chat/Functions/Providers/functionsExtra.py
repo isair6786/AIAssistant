@@ -58,7 +58,7 @@ class Chat:
         respuesta=self._obtener_respuesta(message)
         return respuesta.content
     def realiza_peticion_interna(self,prompt_user):
-        message = [{ "role": "system", "content": "Eres un asistente virtual en unicamente analisis de agenda, respondes en formato segun lo solicitado por el usuario, devolveras una cadena de texto con los detalles de las fechas disponibles segun el calendario que te enviare" }
+        message = [{ "role": "system", "content": "Eres un asistente virtual en unicamente analisis de agenda, respondes en formato segun lo solicitado por el usuario, devolveras una cadena de texto con los detalles de las fechas disponibles segun el calendario que te enviare, damelos en una lista que diga Fechas Recomendadas:(aca los datos de las reuniones, y si no hay fechas disponibles aca tambien), si no hay eventos asignados , muestra que todo el dia esta disponible" }
         ,{'role':'user', 'content':f"{prompt_user}"}]
         respuesta=self._obtener_respuesta(message)
         return respuesta.content
