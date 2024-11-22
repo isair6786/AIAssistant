@@ -72,12 +72,16 @@ class Chat:
             "leer_agenda": FuncionsCode._readEvents,
             "leer_correos": FuncionsCode._readEmails,
             "agendar_evento":FuncionsCode._sheduleEvent,
+            "analiza_agenda":FuncionsCode._viewShedule,
             }  
-            _isSayHi=False #variable para evaluar el saludo
+            _isAnaliza_Agenda=False #variable para evaluar el saludo
             for funcion in llamadas_funciones:
                 function_name = funcion.function.name
                 function_to_call = available_functions[function_name]
                 function_args = json.loads(funcion.function.arguments)
+                # print(function_name)
+                # if function_name=="analiza_agenda":
+                #     _isAnaliza_Agenda=True
                 if len(function_args)>0:
                     sorted_args = [function_args[arg_name] for arg_name in sorted(function_args.keys())]
                     #print(sorted_args)
@@ -88,7 +92,7 @@ class Chat:
                     #     _isSayHi=True
                     #     message=function_response
 
-            if not _isSayHi :
+            if not _isAnaliza_Agenda :
                 #Concatenamos tollcalls
                 self._concatenar_chat(
                     {

@@ -54,6 +54,23 @@ def api_leer_correos(uid):
         print(f"Excepción al enviar la solicitud: {e}")
         return f"Error al realizar la solicitud: {e}"
 
+def api_validar_horarios(end,esRangodeFechas,start,uid,correoUid):
+    #print(end,esRangodeFechas,start,uid,correoUid)
+    esRango=0
+    if esRangodeFechas:
+        esRango=1
+    try:
+        URL = os.getenv('URL_API')+f"/api/getInfoShedule?uid={uid}&date={start}&endDate={end}&esRango={esRango}"
+        # Realizar la solicitud get
+        response = requests.get(URL,timeout=(30,90))  # 'json' serializa automáticamente el dict en JSON
+        return(response.text)
+    except requests.Timeout:
+        print("Error al consultar agenda, el servicio no esta disponible por el momento , intente nuevamente ")
+        return "Error al consultar agenda, el servicio no esta disponible por el momento , intente nuevamente "
+    except requests.RequestException as e:
+        print(f"Excepción al enviar la solicitud: {e}")
+        return f"Error al realizar la solicitud: {e}"
+
 def api_agendar_evento(attendees, descripcion_evento, end, isAllDay, start, titulo, uid, correoUid):
     try:
         URL = os.getenv('URL_API') + "/api/pythonSheduleEvent"

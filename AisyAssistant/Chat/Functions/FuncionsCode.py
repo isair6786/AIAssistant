@@ -26,3 +26,7 @@ def _readEmails(uid,correoUid):
 def _sheduleEvent(attendees,descripcion_evento,end,isAllDay,start,titulo,uid,correoUid):
     respuesta=FuncionsCode.api_agendar_evento(attendees,descripcion_evento,end,isAllDay,start,titulo,uid,correoUid)
     return respuesta
+
+def _viewShedule(end,esRangodeFechas,start,uid,correoUid):
+    respuesta=FuncionsCode.api_validar_horarios(end,esRangodeFechas,start,uid,correoUid)
+    return respuesta

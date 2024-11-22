@@ -100,6 +100,33 @@ functions = [
                 "required": ["titulo","descripcion_evento","start","end","isAllDay","attendees"],
             }
             }
+        },
+         {
+            "type": "function",
+            "function": {
+            "name": "analiza_agenda",
+            "description": "Analiza la agenda del usuario y valida los horarios disponibles segun ya fea una fecha en especifico o un rango de fechas",
+            "parameters": {
+               "type": "object",
+                "properties": {
+
+                     "start": {
+                        "type": "string",
+                        "description": "el usuario brinda la Fecha de busqueda inicial (se formateará como este ejemplo 2024-11-26) ",
+                    },
+                     "end": {
+                        "type": "string",
+                        "description": "el usuario brinda la Fecha de busqueda final( formateará como este ejemplo 2024-11-26 ) ",
+                    },
+                    "esRangodeFechas": {
+                        "type": "boolean",
+                        "description": "El usuario confirma si se buscara solo en la fecha inicio o si se hará desde la fecha inicio a la fecha fin ",
+                    }
+                    
+                },
+                "required": ["start","end","esRangodeFechas"],
+            }
+            }
         }
     ]
 
