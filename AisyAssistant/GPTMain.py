@@ -13,6 +13,8 @@ class MessageRequest(BaseModel):
     uid: str
     correoUid: str
 
+class SheduleRequest(BaseModel):
+    contexto: str 
 
 # Define el modelo de datos para la respuesta
 class MessageResponse(BaseModel):
@@ -37,7 +39,16 @@ async def send_message(request: MessageRequest):
     except Exception as e:
         print(HTTPException(status_code=500, detail=str(e)))
         return MessageResponse(responseMessage="Ocurrio un error al procesar el mensaje , intente nuevamente")
-    
+@app.post("/getShedule/")
+async def send_message(request: SheduleRequest):
+    try:
+        respuesta = chat_instance.realiza_peticion(request.contexto)
+
+        return MessageResponse(responseMessage=respuesta)
+    except Exception as e:
+        print(HTTPException(status_code=500, detail=str(e)))
+        return MessageResponse(responseMessage="Ocurrio un error al procesar el mensaje , intente nuevamente")
+  
 @app.get("/")
 async def send_message():
     return {"responseMessage": 'HolaMundo-Estado de API: Ejecucion'}

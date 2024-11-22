@@ -30,6 +30,7 @@ class Chat:
             tool_choice="auto"
         )
         return respuesta.choices[0].message
+
     
     def _obtener_completion_function(self,mensajes, model=_model):
         respuesta = openai.chat.completions.create(
@@ -40,11 +41,22 @@ class Chat:
      #Metodo Privado
     def _concatenar_chat(self,chat):
         self._context.append(chat)
-   
+
+#Para analisis de agenda
+    def _obtener_respuesta(self,mensajes, model=_model):
+        respuesta = openai.chat.completions.create(
+
+            model=model,
+            messages=mensajes
+        )
+        return respuesta.choices[0].message
+
     def realiza_peticion(self,prompt_user):
-        self._concatenar_chat({'role':'user', 'content':f"{prompt_user}"})
-        respuesta=self._analiza_respuesta(self._obtener_completion(self.obtener_contexto()))
-        return respuesta
+        message = [{ "role": "system", "content": "Eres un asistente virtual en unicamente analisis de agenda, respondes en formato segun lo solicitado por el usuario" }
+        ,{'role':'user', 'content':f"{prompt_user}"}]
+        respuesta=self._obtener_respuesta(message)
+        return respuesta.content
+
     #Esta funcion recibe el contexto de los mensajes con el ultimo 
     #mensaje del usuario para obtener la respuesta 
     def realiza_peticion_fe(self,mensajes,uid,correoUid):
